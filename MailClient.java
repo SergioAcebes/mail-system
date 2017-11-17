@@ -11,7 +11,7 @@ public class MailClient
     private MailServer server;
     // The user running this client.
     private String user;
-    
+    // The last message.
     private MailItem ultimoMensaje;
     /**
      * Create a mail client run by user and attached to the given server.
@@ -37,7 +37,7 @@ public class MailClient
     public void printNextMailItem()
     {
         MailItem item = server.getNextMailItem(user);
-      
+
         if(item == null) {
             System.out.println("No new mail.");
         }
@@ -46,14 +46,18 @@ public class MailClient
             ultimoMensaje = item;
         }
     }
-    
 
     /**
      * Can see the last message.
      */
     public void getLastMailItem()
     {
-      ultimoMensaje.print();
+        if (ultimoMensaje == null){
+            System.out.println("No mail");
+        }
+        else{
+            ultimoMensaje.print();
+        }
     }
 
     /**
